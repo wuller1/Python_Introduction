@@ -14,4 +14,4 @@ for key, item in enumerate(lst):
     else:
         lst[key], lst[key + 1] = lst[key + 1], lst[key]
 
-print(f"Значение после обмена значений: {lst}")
+print(f"Данные после обмена значений: {lst}")
