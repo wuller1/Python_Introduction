@@ -5,7 +5,19 @@
 # Решение через list:
 
 season = ['зима', 'зима', 'весна', 'весна', 'весна', 'лето', 'лето', 'лето', 'осень', 'осень', 'осень', 'зима']
-month = input("\nВведите номер месяца: ")
+
+while True:
+    month = input("\nВведите номер месяца: ")
+
+    try:
+        if 1 <= int(month) <= 12:
+            break
+        else:
+            print(f"Месяц с номером {month} не существует")
+    except ValueError:
+        print("Введено некорректное значение")
+        continue
+
 print("\nРешение через list: ")
 print(f"{month}-й месяц - {season[int(month) - 1]}")
 
