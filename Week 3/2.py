@@ -5,7 +5,7 @@
 
 
 def print_user_data(name: str, family_name: str, birth_year: int, city: str, email: str, phone_number: str) -> str:
-    """Принимает 5 параметров данных о пользователя, возвращает их в виде строки"""
+    """Принимает 5 параметров данных о пользователе, возвращает их в виде строки"""
     return f"Имя: {name}, Фамилия: {family_name}, Год рождения: {birth_year}, " \
            f"Город проживания: {city}, email: {email}, Номер телефона: {phone_number}"
 
