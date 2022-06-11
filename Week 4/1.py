@@ -2,3 +2,10 @@
 # заработной платы сотрудника. Используйте в нём формулу: (выработка в часах*ставка в час) + премия.
 # Во время выполнения расчёта для конкретных значений необходимо запускать скрипт с параметрами.
 
+from sys import argv
+
+def salary(name, output, rate, bonus):
+    return (float(output) * float(rate)) + float(bonus)
+
+
+print(salary(*argv))
