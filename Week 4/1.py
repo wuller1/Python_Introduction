@@ -4,6 +4,7 @@
 
 from sys import argv
 
+
 def salary(name, output, rate, bonus):
     return (float(output) * float(rate)) + float(bonus)
 

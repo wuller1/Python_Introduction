@@ -9,15 +9,14 @@ data = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
 
 def greater_than_previous(lst):
     previous = None
-    new_list = []
     for el in lst:
         if previous is None:
             previous = el
             continue
         elif el > previous:
-            new_list.append(el)
+            yield el
         previous = el
-    return new_list
 
 
-print(greater_than_previous(data))
+greater_than_previous_list = list(greater_than_previous(data))
+print(greater_than_previous_list)
