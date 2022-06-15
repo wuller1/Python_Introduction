@@ -18,16 +18,14 @@ russian_dict = {
 
 
 def read_file_change_numeric(input_file: str, output_file: str) -> None:
-    translated_list = []
     with open(filename, encoding="UTF-8") as input_text:
         for line in input_text:
             line_list = line.split(" ")
             line_list[0] = russian_dict[line_list[0]]
             out_line = " ".join(line_list)
-            translated_list.append(out_line)
 
-            with open(filename_out, "w", encoding="UTF-8") as out_file:
-                out_file.writelines(translated_list)
+            with open(filename_out, "a", encoding="UTF-8") as out_file:
+                out_file.write(out_line)
 
 
 read_file_change_numeric(filename, filename_out)
