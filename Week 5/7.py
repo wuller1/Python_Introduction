@@ -10,3 +10,29 @@
 # Пример json-объекта:
 # [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 # Подсказка: использовать менеджер контекста.
+from statistics import mean
+from json import dump
+pathname = "text7.txt"
+
+
+def calculate_profit(path):
+    profit_dict = {}
+    profit_list = []
+    json_list = []
+    with open(path, encoding="UTF-8") as file:
+        for line in file:
+            firm_list = line.rstrip().split(" ")
+            firm_profit = float(firm_list[2]) - float(firm_list[3])
+            profit_dict[firm_list[0]] = firm_profit
+        json_list.append(profit_dict)
+
+        for item in profit_dict.values():
+            if item >= 0:
+                profit_list.append(item)
+        mean_profit = mean(profit_list)
+        json_list.append({"average_profit": round(mean_profit, 2)})
+        with open("json_data.json", "w") as json_file:
+            dump(json_list, json_file)
+
+
+calculate_profit(pathname)
