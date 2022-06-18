@@ -17,26 +17,51 @@ class TrafficLight(object):
     red_duration = 7
     yellow_duration = 2
     green_duration = 30
+    previous_light = 'yellow'
 
     def running(self):
         while True:
-            timing = time.time()
-            if 0 <= time.time() - timing <= self.red_duration:
-                self.red()
-            elif self.red_duration < time.time() - timing <= self.red_duration + self.yellow_duration:
-                self.yellow()
-            elif self.red_duration + self.yellow_duration < time.time() - timing <= self.red_duration + self.yellow_duration + self.green_duration:
-                self.green()
+            self.red()
+            self.yellow()
+            self.green()
+
+    @staticmethod
+    def close_program():
+        print("\nНарушен порядок цветовых сигналов, завершаю программу...")
+        exit()
 
     def green(self):
-        self.__color = 'green'
-        print(self.__color)
+        if self.previous_light == 'yellow':
+            self.previous_light = 'green'
+            self.__color = 'green'
+            print("\r", end="")
+            print("🟢", end="")
+            time.sleep(self.green_duration)
+        else:
+            self.close_program()
 
     def red(self):
-        self.__color = 'red'
-        print(self.__color)
+        if self.previous_light == 'yellow':
+            self.previous_light = 'red'
+            self.__color = 'red'
+            print("\r", end="")
+            print("🔴", end="")
+            time.sleep(self.red_duration)
+        else:
+            self. close_program()
 
     def yellow(self):
-        self.__color = 'yellow'
-        print(self.__color)
+        if self.previous_light == 'red':
+            self.previous_light = 'yellow'
+            self.__color = 'yellow'
+            print("\r", end="")
+            print("🟡", end="")
+            time.sleep(self.yellow_duration)
+        else:
+            self.close_program()
+
+
+if __name__ == "__main__":
+    traffic_light = TrafficLight()
+    traffic_light.running()
 
