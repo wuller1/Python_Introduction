@@ -31,3 +31,31 @@ class Car(object):
 
     def show_speed(self):
         return f"Текущая скорость автомобиля: {self.speed} км/ч"
+
+
+class TownCar(Car):
+    speed_limit = 60
+
+    def show_speed(self):
+        if self.speed > self.speed_limit:
+            return f"Вы превысили скорость на {self.speed - self.speed_limit} км/ч, ваша скорость {self.speed} км/ч"
+
+
+class SportCar(Car):
+    pass
+
+
+class WorkCar(Car):
+    speed_limit = 40
+
+    def show_speed(self):
+        if self.speed > self.speed_limit:
+            return f"Вы превысили скорость на {self.speed - self.speed_limit} км/ч, ваша скорость {self.speed} км/ч"
+
+
+class PoliceCar(Car):
+    pass
+
+
+sport_car = SportCar(300, "red", "Lamborghini", False)
+print(sport_car.show_speed())
