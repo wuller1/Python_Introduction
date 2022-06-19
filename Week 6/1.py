@@ -16,8 +16,8 @@ class TrafficLight(object):
     __color = ''
     red_duration = 7
     yellow_duration = 2
-    green_duration = 30
-    previous_light = 'yellow'
+    green_duration = 7
+    previous_light = 'green'
 
     def running(self):
         while True:
@@ -41,7 +41,7 @@ class TrafficLight(object):
             self.close_program()
 
     def red(self):
-        if self.previous_light == 'yellow':
+        if self.previous_light == 'green':
             self.previous_light = 'red'
             self.__color = 'red'
             print("\r", end="")
