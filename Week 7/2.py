@@ -19,6 +19,7 @@ class Clothes(ABC):
 
 
 class Coat(Clothes):
+    pass
     @property
     def tissue(self):
         return round(self.param / 6.5 + 0.5, 2)
@@ -30,7 +31,8 @@ class Suit(Clothes):
         return round(self.param * 2 + 0.3, 2)
 
 
-coat = Coat(54)
-suit = Suit(1.82)
-print(coat.tissue)
-print(suit.tissue)
+if __name__ == "__main__":
+    coat = Coat(54)
+    suit = Suit(1.82)
+    print(coat.tissue)
+    print(suit.tissue)

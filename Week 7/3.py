@@ -23,3 +23,56 @@
 # Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5.
 # Тогда метод make_order() вернёт строку: *****\n*****\n*****.
 # Подсказка: подробный список операторов для перегрузки доступен по ссылке.
+class Cell(object):
+
+    def __init__(self, number):
+        self.number = number
+
+    @property
+    def number_of_cells(self):
+        return self.number
+
+    def __add__(self, other):
+        return Cell(self.number + other.number)
+
+    def __sub__(self, other):
+        if self.number - other.number > 0:
+            return Cell(self.number - other.number)
+        else:
+            print("невозможно выполнить данную операцию")
+
+    def __mul__(self, other):
+        return Cell(self.number * other.number)
+
+    def __truediv__(self, other):
+        return Cell(self.number // other.number)
+
+    def make_order(self, number_per_row):
+        string_of_cells = ""
+        number_of_rows = self.number // number_per_row
+
+        for i in range(0, number_of_rows):
+            string_of_cells += "*" * number_per_row + "\n"
+
+        if self.number % number_per_row != 0:
+            string_of_cells += "*" * (self.number % number_per_row)
+        return string_of_cells
+
+
+if __name__ == "__main__":
+    cell_1 = Cell(100)
+    cell_2 = Cell(10)
+
+    cell_add = cell_1 + cell_2
+    cell_sub = cell_1 - cell_2
+    cell_mult = cell_1 * cell_2
+    cell_div = cell_1 / cell_2
+
+    print(cell_add.number_of_cells)
+    print(cell_sub.number_of_cells)
+    print(cell_mult.number_of_cells)
+    print(cell_div.number_of_cells)
+
+    print(cell_1.make_order(11))
+
+

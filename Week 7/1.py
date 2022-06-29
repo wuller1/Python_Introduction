@@ -49,8 +49,9 @@ class Matrix(object):
         return tuple(added_matrix)
 
 
-matrix1 = Matrix([3, 5, 5, 3], [8, 3, 7, 1])
-matrix2 = Matrix([4, 5, 6, 7], [7, 8, 9, 10])
-matrix3 = Matrix(*(matrix1 + matrix2))
-print(str(matrix3))
-print(str(matrix1))
+if __name__ == "__main__":
+    matrix1 = Matrix([3, 5, 5, 3], [8, 3, 7, 1])
+    matrix2 = Matrix([4, 5, 6, 7], [7, 8, 9, 10])
+    matrix3 = Matrix(*(matrix1 + matrix2))
+    print(str(matrix3))
+    print(str(matrix1))
