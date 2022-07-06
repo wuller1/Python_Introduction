@@ -17,4 +17,4 @@ if __name__ == "__main__":
             return err
 
 
-    print(divide(3, 2))
+    print(divide(3, 0))

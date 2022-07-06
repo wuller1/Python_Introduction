@@ -9,3 +9,29 @@
 # пользователем очередного элемента необходимо реализовать проверку типа элемента. Вносить его в список,
 # только если введено число. Класс-исключение должен не позволить пользователю ввести текст (не число) и
 # отобразить соответствующее сообщение. При этом работа скрипта не должна завершаться.
+
+class NotNumberError(Exception):
+    def __init__(self, text):
+        self.text = text
+
+
+def make_list():
+    data_list = []
+    while True:
+        try:
+            data = input("Введите число (введите 'q' для выхода из программы): ")
+
+            if data == 'q':
+                print(data_list)
+                break
+
+            if not data.isnumeric():
+                raise NotNumberError("Не число")
+
+            data_list.append(int(data))
+
+        except NotNumberError as err:
+            print(err)
+
+
+make_list()
