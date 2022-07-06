@@ -27,19 +27,25 @@ class Inventory(object):
             print(err)
 
     def give_away(self, equipment_id, department, number):
-        update_key = None
+        try:
+            if isinstance(number, str):
+                raise DataTypeError("Невозможно использовать строковый тип данных для количества")
 
-        # find key to update
-        for key, value in enumerate(self.inventory_registry):
-            if value['item_id'] == equipment_id:
-                update_key = key
+            update_key = None
 
-        # update and write to log
-        if update_key is not None and self.inventory_registry[update_key]["number"] >= number:
-            self.inventory_registry[update_key]["number"] = self.inventory_registry[update_key]["number"] - number
+            # find key to update
+            for key, value in enumerate(self.inventory_registry):
+                if value['item_id'] == equipment_id:
+                    update_key = key
 
-            self.inventory_log.append({"date": datetime.datetime.now(), "equipment_id": equipment_id,
-                                       "department": department, "number": number})
+            # update and write to log
+            if update_key is not None and self.inventory_registry[update_key]["number"] >= number:
+                self.inventory_registry[update_key]["number"] = self.inventory_registry[update_key]["number"] - number
+
+                self.inventory_log.append({"date": datetime.datetime.now(), "equipment_id": equipment_id,
+                                           "department": department, "number": number})
+        except DataTypeError as err:
+            print(err)
 
 
 class OfficeEquipment(object):
