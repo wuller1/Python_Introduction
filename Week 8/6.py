@@ -5,6 +5,11 @@
 import datetime
 
 
+class DataTypeError(Exception):
+    def __init__(self, text):
+        self.text = text
+
+
 class Inventory(object):
 
     def __init__(self, title):
@@ -13,7 +18,13 @@ class Inventory(object):
         self.inventory_log = []
 
     def store(self, equipment, number):
-        self.inventory_registry.append({"number": number, **equipment.__dict__})
+        try:
+            if not isinstance(number, str):
+                self.inventory_registry.append({"number": number, **equipment.__dict__})
+            else:
+                raise DataTypeError("Нельзя использовать строковый тип данных для количества")
+        except DataTypeError as err:
+            print(err)
 
     def give_away(self, equipment_id, department, number):
         update_key = None
@@ -65,3 +76,15 @@ class Copier(OfficeEquipment):
 
         self.color_copier = color_copier
         self.copy_speed = copy_speed
+
+
+if __name__ == "__main__":
+    printer = Printer(1, "Xerox", "PH1376", "ST3857NHY", 100, True)
+    scanner = Scanner(2, "Samsung", "SM2358", "SN324i3265", True, 10.3)
+
+    inventory = Inventory("First")
+    inventory.store(printer, 10)
+    inventory.store(scanner, 20)
+    print(inventory.inventory_registry)
+    inventory.give_away(1, "Economics", 5)
+    print(inventory.inventory_registry)
